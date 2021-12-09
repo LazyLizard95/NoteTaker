@@ -4,6 +4,7 @@ const express = require('express');
 const PORT = process.env.PORT || 3001;
 const app = express();
 const notes = require('./db/db.json');
+const { v4: uuidv4 } = require('uuid');
 //parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
@@ -17,8 +18,13 @@ app.get('/api/notes', (req, res) => {
 
 app.post('/api/notes', (req, res) => {
     const newNote = req.body;
+    newNote.id = uuidv4();
     notes.push(newNote);
-    res.json(notes);
+    fs.writeFile(path.join(__dirname, './db/db.json'), JSON.stringify(notes), (err) =>{
+        if (err) throw err;
+        res.json(notes);
+    });
+    
 })
 
 app.get('/', (req, res) =>{
