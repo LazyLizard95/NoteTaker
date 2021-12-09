@@ -27,6 +27,12 @@ app.post('/api/notes', (req, res) => {
     
 })
 
+app.delete('/api/notes/:id', (req, res) => {
+    const noteId = req.params.id
+    console.log(noteId);
+    res.json({ok:true})
+})
+
 app.get('/', (req, res) =>{
     res.sendFile(path.join(__dirname, "./public/index.html"))
 })
