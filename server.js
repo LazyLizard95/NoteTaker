@@ -30,7 +30,7 @@ app.post('/api/notes', (req, res) => {
 app.delete('/api/notes/:id', (req, res) => {
     const noteId = req.params.id
     res.json(notes.find(noteId));
-    
+    // not sure, tried to read the file first. I need to ask tomorrow ;l
     
     
     
