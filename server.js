@@ -29,10 +29,8 @@ app.post('/api/notes', (req, res) => {
 
 app.delete('/api/notes/:id', (req, res) => {
     const noteId = req.params.id
-    fs.readFile(path.join(__dirname, './db/db.json'), JSON.stringify(notes), (err) => {
-        if (err) throw err;
-        notes.find(noteId);
-    })
+    res.json(notes.find(noteId));
+    
     
     
     
